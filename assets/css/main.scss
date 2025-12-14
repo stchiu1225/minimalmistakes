@@ -12,3 +12,14 @@ search: false
   max-width: 100% !important;
   width: 100% !important;
 }
+
+.fb-embed-wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fb-embed-wrap iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+  border: 0;
+}

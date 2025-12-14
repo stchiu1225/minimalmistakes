@@ -5,8 +5,16 @@ date: 2025-12-14
 permalink: /fb-embed-demo/
 ---
 
-<div class="fb-post"
-     data-href="https://www.facebook.com/20531316728/posts/10154009990506729/"
-     data-show-text="true"></div>
+<div class="fb-embed-wrap">
+  <iframe
+    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D205546469604584%26set%3Da.157112844447947&show_text=true&width=500"
+    width="500"
+    height="521"
+    style="border:none;overflow:hidden"
+    scrolling="no"
+    frameborder="0"
+    allowfullscreen="true"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+</div>
 
-<p>提示：到 Facebook 貼文右上角的「⋯」選單選擇 Embed Post，或直接點擊貼文的時間戳取得永久連結 (permalink)，再將上方 <code>data-href</code> 替換成自己的貼文網址即可同步內容。</p>
+<p><a href="https://www.facebook.com/photo/?fbid=205546469604584&set=a.157112844447947" target="_blank" rel="noopener">Open on Facebook</a></p>
