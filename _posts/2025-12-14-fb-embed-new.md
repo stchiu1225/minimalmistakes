@@ -5,8 +5,6 @@ date: 2025-12-14
 permalink: /fb-embed-new/
 ---
 
-## Post 1
-
 <div class="fb-embed-wrap">
   <iframe
     src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D205558836270014%26set%3Da.157112844447947&show_text=true&width=500"
@@ -19,20 +17,4 @@ permalink: /fb-embed-new/
     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </div>
 
-<p><a href="https://www.facebook.com/photo/?fbid=205558836270014&set=a.157112844447947" target="_blank" rel="noopener">[Open Facebook Post 1]</a></p>
-
-## Post 2
-
-<div class="fb-embed-wrap">
-  <iframe
-    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D205551016270796%26set%3Da.157112844447947&show_text=true&width=500"
-    width="500"
-    height="659"
-    style="border:none;overflow:hidden"
-    scrolling="no"
-    frameborder="0"
-    allowfullscreen="true"
-    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-</div>
-
-<p><a href="https://www.facebook.com/photo/?fbid=205551016270796&set=a.157112844447947" target="_blank" rel="noopener">[Open Facebook Post 2]</a></p>
+<p><a href="https://www.facebook.com/photo/?fbid=205558836270014&set=a.157112844447947" target="_blank" rel="noopener">[Inspiration post link]</a></p>

@@ -5,10 +5,16 @@ date: 2025-12-13
 permalink: /piamo-espresso/
 ---
 
-快速分享 Piamo 馬克杯義式咖啡機的實測心得，微波三十秒就能完成一杯濃縮咖啡。
+<div class="fb-embed-wrap">
+  <iframe
+    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D205551016270796%26set%3Da.157112844447947&show_text=true&width=500"
+    width="500"
+    height="659"
+    style="border:none;overflow:hidden"
+    scrolling="no"
+    frameborder="0"
+    allowfullscreen="true"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+</div>
 
-- 免機器占空間，杯子加水與咖啡粉即可操作。
-- 咖啡油脂與香氣保持不錯，適合忙碌的早晨。
-- 對比傳統咖啡機，清潔與收納都更省時。
-
-想嘗試少負擔的義式風味，不妨把 Piamo 加入日常清單。
+<p><a href="https://www.facebook.com/photo/?fbid=205551016270796&set=a.157112844447947" target="_blank" rel="noopener">[Piamo 貼文連結]</a></p>
