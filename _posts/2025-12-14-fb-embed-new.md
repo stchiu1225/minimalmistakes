@@ -2,7 +2,7 @@
 layout: single
 title: "Inspiration of the week"
 date: 2025-12-14
-permalink: /fb-embed-demo/
+permalink: /fb-embed-new/
 ---
 
 <div class="fb-embed-wrap">
@@ -17,4 +17,4 @@ permalink: /fb-embed-demo/
     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </div>
 
-<p><a href="https://www.facebook.com/photo/?fbid=205546469604584&set=a.157112844447947" target="_blank" rel="noopener">Open on Facebook</a></p>
+<p><a href="https://www.facebook.com/photo/?fbid=205546469604584&set=a.157112844447947" target="_blank" rel="noopener">[Inspiration post link]</a></p>
