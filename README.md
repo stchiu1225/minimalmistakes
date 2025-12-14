@@ -287,3 +287,18 @@ Lunr is distributed under the terms of the [MIT License](http://opensource.org/l
 Minimal Mistakes incorporates [clipboard.js](https://clipboardjs.com/),
 Copyright (c) 2021 Zeno Rocha.
 Clipboard.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Facebook 內嵌貼文同步（方案A）
+
+1. 安裝依賴：`pip install pyyaml`（若要使用 Graph API 則需另裝 `requests`）。
+2. 編輯 `_data/fb_posts.yml`，新增想同步的 Facebook 貼文 `url`、可選的 `title` 與 `date`。
+3. 產生/更新貼文：`python tools/generate_fb_posts.py`
+4. （可選）若已在環境變數設定 `FB_ACCESS_TOKEN`，可改用 `python tools/generate_fb_posts.py --graph` 讓腳本自動抓取 `stpicks`（或 `FB_PAGE_ID` 指定的粉專）最新動態並回寫 `_data/fb_posts.yml`。
+5. 執行完畢後將變更 commit/push，GitHub Pages 會自動重新建置。
+
+## Facebook iframe 內嵌貼文批次匯入
+
+1. 安裝依賴：`pip install requests beautifulsoup4`。
+2. 執行匯入腳本：`python tools/import_fb_iframes.py`（內建 14 筆 iframe 會自動產生對應的 `_posts` 檔案）。
+3. 匯入結果會顯示每篇生成的檔名與標題；如有使用 fallback 標題會印出警告。
+4. 將 `_posts` 變更 commit/push，或從 GitHub Actions 手動觸發 `Import FB iframes` workflow 讓機器人自動生成與推送。

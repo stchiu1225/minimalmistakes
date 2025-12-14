@@ -1,0 +1,11 @@
+---
+layout: single
+---
+
+{% if page.fb_permalink %}
+<div class="fb-post" data-href="{{ page.fb_permalink }}" data-show-text="true"></div>
+{% else %}
+<p><strong>fb_permalink</strong> 未設定，請在 Front Matter 提供 Facebook 貼文永久連結。</p>
+{% endif %}
+
+{{ content }}

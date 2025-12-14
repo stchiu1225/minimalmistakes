@@ -7,3 +7,26 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+.fb-post, .fb-post span, .fb-post iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.fb-embed-wrap {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.fb-embed-wrap iframe {
+  width: 100% !important;
+  max-width: 500px !important;
+  border: 0;
+  display: block;
+}
+
+.page__content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
