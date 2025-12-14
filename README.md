@@ -287,3 +287,11 @@ Lunr is distributed under the terms of the [MIT License](http://opensource.org/l
 Minimal Mistakes incorporates [clipboard.js](https://clipboardjs.com/),
 Copyright (c) 2021 Zeno Rocha.
 Clipboard.js is distributed under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Facebook 內嵌貼文同步（方案A）
+
+1. 安裝依賴：`pip install pyyaml`（若要使用 Graph API 則需另裝 `requests`）。
+2. 編輯 `_data/fb_posts.yml`，新增想同步的 Facebook 貼文 `url`、可選的 `title` 與 `date`。
+3. 產生/更新貼文：`python tools/generate_fb_posts.py`
+4. （可選）若已在環境變數設定 `FB_ACCESS_TOKEN`，可改用 `python tools/generate_fb_posts.py --graph` 讓腳本自動抓取 `stpicks`（或 `FB_PAGE_ID` 指定的粉專）最新動態並回寫 `_data/fb_posts.yml`。
+5. 執行完畢後將變更 commit/push，GitHub Pages 會自動重新建置。

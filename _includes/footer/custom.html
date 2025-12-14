@@ -1,6 +1,11 @@
 <!-- start custom footer snippets -->
-<!-- end custom footer snippets -->
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous"
-  src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v20.0">
+<script>
+  window.fbAsyncInit = function() {
+    if (window.FB) {
+      FB.init({ xfbml: true, version: 'v21.0' });
+    }
+  };
 </script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js"></script>
+<!-- end custom footer snippets -->
