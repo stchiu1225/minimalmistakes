@@ -19,7 +19,8 @@ search: false
 }
 
 .fb-embed-wrap iframe {
-  max-width: 100% !important;
   width: 100% !important;
+  max-width: 500px !important;
   border: 0;
+  display: block;
 }
