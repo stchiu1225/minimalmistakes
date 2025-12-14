@@ -7,9 +7,9 @@ permalink: /delonghi-kmix/
 
 <div class="fb-embed-wrap">
   <iframe
-    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D205558836270014%26set%3Da.157112844447947&show_text=true&width=500"
+    src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fstpicks%2Fphotos%2Fa.157112844447947%2F205551016270796%2F%3Ftype%3D3&show_text=true&width=500"
     width="500"
-    height="514"
+    height="659"
     style="border:none;overflow:hidden"
     scrolling="no"
     frameborder="0"
@@ -17,4 +17,4 @@ permalink: /delonghi-kmix/
     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 </div>
 
-<p><a href="https://www.facebook.com/photo/?fbid=205558836270014&set=a.157112844447947" target="_blank" rel="noopener">[DeLonghi 貼文連結]</a></p>
+<p><a href="https://www.facebook.com/stpicks/photos/a.157112844447947/205551016270796/?type=3" target="_blank" rel="noopener">[DeLonghi 貼文連結]</a></p>
