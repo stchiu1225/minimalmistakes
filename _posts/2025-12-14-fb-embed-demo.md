@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "FB Embed Demo"
+title: "Inspiration of the week"
 date: 2025-12-14
 permalink: /fb-embed-demo/
 ---
