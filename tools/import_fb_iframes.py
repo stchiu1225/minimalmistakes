@@ -1,16 +1,15 @@
 import hashlib
+import os
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import List, Optional
+from typing import Dict, List, Optional
 from urllib.parse import parse_qs, unquote, urlparse
 
 import requests
 from bs4 import BeautifulSoup
 
-SITE_DIR = Path(__file__).resolve().parent.parent
-POSTS_DIR = SITE_DIR / "_posts"
 DATE_STR = "2025-12-14"
 
 IFRAMES: List[str] = [
@@ -29,6 +28,17 @@ IFRAMES: List[str] = [
     """<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D213687298790501%26set%3Da.157112844447947&show_text=true&width=500\" width=\"500\" height=\"728\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>""",
     """<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Fphoto%2F%3Ffbid%3D214237998735431%26set%3Da.157112844447947&show_text=true&width=500\" width=\"500\" height=\"701\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>""",
 ]
+
+
+def find_site_dir() -> Path:
+    env_dir = os.environ.get("SITE_DIR")
+    if env_dir:
+        return Path(env_dir).resolve()
+
+    for config in sorted(Path.cwd().rglob("_config.yml")):
+        return config.parent.resolve()
+
+    raise FileNotFoundError("_config.yml not found; cannot determine SITE_DIR")
 
 
 def extract_post_url(iframe_html: str) -> Optional[str]:
@@ -103,9 +113,17 @@ def build_post_content(iframe_html: str, post_url: str) -> str:
     )
 
 
-def write_post(slug: str, title: str, body: str) -> Path:
-    POSTS_DIR.mkdir(parents=True, exist_ok=True)
-    filename = POSTS_DIR / f"{DATE_STR}-{slug}.md"
+def ensure_unique_slug(base_slug: str, counts: Dict[str, int]) -> str:
+    slug = base_slug or "post"
+    counts[slug] = counts.get(slug, 0) + 1
+    if counts[slug] > 1:
+        slug = f"{slug}-{counts[slug]:02d}"
+    return slug
+
+
+def write_post(posts_dir: Path, slug: str, title: str, body: str) -> str:
+    posts_dir.mkdir(parents=True, exist_ok=True)
+    filename = posts_dir / f"{DATE_STR}-{slug}.md"
     front_matter = (
         "---\n"
         "layout: single\n"
@@ -115,13 +133,39 @@ def write_post(slug: str, title: str, body: str) -> Path:
         "---\n\n"
     )
     content = front_matter + body
+
+    if filename.exists():
+        existing = filename.read_text(encoding="utf-8")
+        if existing == content:
+            return "skipped"
+        filename.write_text(content, encoding="utf-8")
+        return "updated"
+
     filename.write_text(content, encoding="utf-8")
-    return filename
+    return "created"
+
+
+def seed_slug_counts(posts_dir: Path) -> Dict[str, int]:
+    counts: Dict[str, int] = {}
+    if posts_dir.exists():
+        for post_file in posts_dir.glob(f"{DATE_STR}-*.md"):
+            slug = post_file.stem.replace(f"{DATE_STR}-", "", 1)
+            counts[slug] = max(counts.get(slug, 0), 1)
+    return counts
 
 
 def main() -> None:
+    site_dir = find_site_dir()
+    posts_dir = site_dir / "_posts"
+
     today_token = datetime.now().strftime("%H%M%S")
     fallback_counter = 1
+    slug_counts = seed_slug_counts(posts_dir)
+
+    created_count = 0
+    updated_count = 0
+    skipped_count = 0
+    generated_files: List[str] = []
 
     for idx, iframe_html in enumerate(IFRAMES, start=1):
         post_url = extract_post_url(iframe_html)
@@ -133,10 +177,27 @@ def main() -> None:
         if title == fallback_title:
             fallback_counter += 1
 
-        slug = extract_slug(post_url, default_token=today_token)
+        base_slug = extract_slug(post_url, default_token=today_token)
+        slug = ensure_unique_slug(base_slug, slug_counts)
         body = build_post_content(iframe_html, post_url)
-        path = write_post(slug, title, body)
-        print(f"[info] Generated {path.name} — title: {title}")
+        status = write_post(posts_dir, slug, title, body)
+        generated_files.append(f"{DATE_STR}-{slug}.md")
+
+        if status == "created":
+            created_count += 1
+        elif status == "updated":
+            updated_count += 1
+        else:
+            skipped_count += 1
+
+        print(f"[info] {status.capitalize()} {DATE_STR}-{slug}.md — title: {title}")
+
+    print(f"\n[summary] SITE_DIR: {site_dir}")
+    print(f"[summary] posts_dir: {posts_dir}")
+    print(f"[summary] created: {created_count}, updated: {updated_count}, skipped: {skipped_count}")
+    print("[summary] generated files:")
+    for name in sorted(generated_files):
+        print(f" - {name}")
 
 
 if __name__ == "__main__":

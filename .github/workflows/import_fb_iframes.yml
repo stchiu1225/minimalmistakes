@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,17 +22,28 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
+      - name: Debug workspace and locate _config.yml
+        run: |
+          echo "PWD=$(pwd)"
+          echo "Find _config.yml:"
+          ls -la
+          find . -maxdepth 3 -name "_config.yml" -print
+
       - name: Generate posts from embedded iframes
+        env:
+          SITE_DIR: ${{ github.workspace }}
         run: python tools/import_fb_iframes.py
+
+      - name: List generated posts and git status
+        run: |
+          echo "List posts:"
+          find . -maxdepth 4 -path "*/_posts/*" -type f -print | tail -n 50
+          git status --porcelain
 
       - name: Commit changes
         run: |
-          if git status --porcelain | grep -q .; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add _posts
-            git commit -m "Import Facebook iframe posts"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Import FB iframes" || echo "nothing to commit"
+          git push
